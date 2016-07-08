@@ -45,13 +45,12 @@ public class CommandMS implements CommandExecutor {
 					arg0.sendMessage(prefix + "§3§lUsage : /ms <player>");
 					return true;
 				}else{
-					Player pinger = (Player) arg0;
 					Player pinged = Bukkit.getPlayer(arg3[0]);
 					if(pinged != null){
-						getPing(pinger,pinged);
+						getPing(arg0,pinged);
 						return true;
 					}else{
-						pinger.sendMessage(prefix + "§c§lPlayer offline.");
+						arg0.sendMessage(prefix + "§c§lPlayer offline.");
 						return true;
 					}
 				}
@@ -63,21 +62,21 @@ public class CommandMS implements CommandExecutor {
 	}
 	
 	
-	public void getPing(Player sender, Player pinger){
+	public void getPing(CommandSender sender, Player pinged){
 		String prefix = "§l•MinePing• ";
-		Integer ping = ((CraftPlayer) pinger).getHandle().ping;
+		Integer ping = ((CraftPlayer) pinged).getHandle().ping;
 		if(ping == 0){
-			sender.sendMessage(prefix + ChatColor.LIGHT_PURPLE + ping + "ms");
+			sender.sendMessage(prefix + "§3§l" + pinged.getName() + " : " + ChatColor.LIGHT_PURPLE + ping + "ms");
 		}else if(ping>0 && ping<50){
-			sender.sendMessage(prefix + ChatColor.AQUA + ping + "ms");
+			sender.sendMessage(prefix + "§3§l" + pinged.getName() + " : " + ChatColor.AQUA + ping + "ms");
 		}else if(ping>49 && ping<80){
-			sender.sendMessage(prefix + ChatColor.GREEN + ping + "ms");
+			sender.sendMessage(prefix + "§3§l" + pinged.getName() + " : " + ChatColor.GREEN + ping + "ms");
 		}else if(ping>79 && ping<120){
-			sender.sendMessage(prefix + ChatColor.YELLOW + ping + "ms");
+			sender.sendMessage(prefix + "§3§l" + pinged.getName() + " : " + ChatColor.YELLOW + ping + "ms");
 		}else if(ping>119 && ping<160){
-			sender.sendMessage(prefix + ChatColor.GOLD + ping + "ms");
+			sender.sendMessage(prefix + "§3§l" + pinged.getName() + " : " + ChatColor.GOLD + ping + "ms");
 		}else if(ping>159){
-			sender.sendMessage(prefix + ChatColor.RED + ping + "ms");
+			sender.sendMessage(prefix + "§3§l" + pinged.getName() + " : " + ChatColor.RED + ping + "ms");
 		}
 	}
 	
