@@ -1,0 +1,9 @@
+name: MinePing
+version: 1.0
+description: MinePing. Show your ping ms in game !
+author: Akio08
+main: ovh.akio.mc.MinePing.Main
+database: false
+commands:
+  ms:
+    description: Show your ms
